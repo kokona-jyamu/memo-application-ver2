@@ -48,9 +48,10 @@ body::before{
   flex-wrap: wrap;
   gap: 25px;
   width: 100%;
+  margin:20px 0 auto;
 }
 .memo-box{
-  width: calc(50% - 12.5px);
+  width: calc(50% - 20px);
   flex-direction: column;
   display:flex;
   align-items: center;
@@ -68,13 +69,13 @@ body::before{
   font-family: 'Montserrat', sans-serif;
   color:#96720fbc;
   text-align: center;
-  padding-top: 8px;
+  padding-top: 10px;
 }
 .memo-box p{
   font-family: 'Montserrat', sans-serif;
   color:#5a43039b;
   text-align: center;
-  padding: 8px;
+  font-size: 13px;
 }
 
 textarea {
