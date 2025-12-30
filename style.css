@@ -1,0 +1,134 @@
+body {
+  background: 
+  radial-gradient(
+    circle at top, rgba(211, 206, 190, 0.25),transparent 20%),
+  linear-gradient(
+    to bottom,#FBFBF3 0%, #FBF7E4 70%);
+  margin: 0;
+  padding: 20px;
+}
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index:0;
+  background-image:
+    linear-gradient(
+      rgba(171, 163, 148, 0.05) 2px, transparent 1px),
+    linear-gradient(
+      90deg, rgba(171, 163, 148, 0.05) 2px,transparent 1px);
+  background-size: 20px 20px;
+}
+
+.container{
+  margin:0 auto;
+  margin:100px 0 ;
+}
+
+.container h1 {
+  font-family: 'Montserrat', sans-serif;
+  display: none;
+  text-align: center;
+  letter-spacing: 0.15em;
+  color:#96720fbc;
+  padding:40px 0;
+}
+.container p{
+  font-family: sans-serif;
+  display: none;
+  text-align: center;
+  color: #bca547f4;
+  letter-spacing: 0.03em;
+  padding: 30px;
+}
+
+.menu-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  width: 100%;
+}
+.memo-box{
+  width: calc(50% - 12.5px);
+  flex-direction: column;
+  display:flex;
+  align-items: center;
+  border: 2px solid #bca547f4;
+  border-radius: 14px;
+  gap: 10px;
+}
+@media (max-width: 760px) {
+  .memo-box {
+    width: 100%;
+  }
+}
+
+.memo-box h3{
+  font-family: 'Montserrat', sans-serif;
+  color:#96720fbc;
+  text-align: center;
+  padding-top: 8px;
+}
+.memo-box p{
+  font-family: 'Montserrat', sans-serif;
+  color:#5a43039b;
+  text-align: center;
+  padding: 8px;
+}
+
+textarea {
+  width: 90%;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin: 20px 30px;
+  align-items: center;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  align-items: center;
+}
+
+#memoList {
+  margin-top: 20px;
+}
+
+.memo-card {
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.memo-date {
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 8px;
+}
+
+.memo-text {
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+}
+
+.memo-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.memo-actions button {
+  flex: 1;
+}
+
+/* スマホ対応 */
+@media (max-width: 480px) {
+  textarea {
+    height: 100px;
+  }
+}
