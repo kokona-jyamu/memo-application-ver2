@@ -65,17 +65,19 @@ body::before{
   }
 }
 
-.memo-box h3{
+.memo-box-title{
   font-family: 'Montserrat', sans-serif;
   color:#96720fbc;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 15px;
 }
-.memo-box p{
+.memo-box-detail{
   font-family: 'Montserrat', sans-serif;
   color:#5a43039b;
   text-align: center;
+  justify-content: center;
   font-size: 13px;
+  padding-bottom: 15px;
 }
 
 textarea {
