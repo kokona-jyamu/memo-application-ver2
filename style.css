@@ -95,7 +95,7 @@ body::before{
   animation-delay: 0.9s;
 }
 .delay-3 {
-  animation-delay: 2.0s;
+  animation-delay: 1.5s;
 }
 @keyframes fadeUp {
   from {
@@ -133,22 +133,24 @@ body::before{
 .menu-card h3 {
   font-size: 18px;
   letter-spacing: 0.1em;
-  margin-bottom: 8px;
-  color: #6b5520;
+  margin-bottom: 15px;
+  color: #96720fbc;
 }
 
 /* 説明 */
 .menu-card p {
   font-size: 12px;
-  color: #8a7440;
+  color:#96720fbc;
 }
 
-/* hover演出 */
+/*menu-cardclick*/
 .menu-card:hover{
-  background-color: #fdf8ea;
-  transform: translateY(-4px) scale(1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  opacity: 0.1;
+  background-color: #c3bba2;
+  transform: translateY(-1px);
 }
+
 
 
 
