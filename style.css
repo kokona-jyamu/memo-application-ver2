@@ -1,5 +1,15 @@
+/* 全体リセット */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background: 
+  font-family: 'Montserrat', sans-serif;
+  background-color: #c8b26a;
+  color: #6b5520;
+    background: 
   radial-gradient(
     circle at top, rgba(211, 206, 190, 0.25),transparent 20%),
   linear-gradient(
@@ -7,11 +17,11 @@ body {
   margin: 0;
   padding: 20px;
 }
+
 body::before{
   content: "";
   position: fixed;
   inset: 0;
-  pointer-events: none;
   z-index:0;
   background-image:
     linear-gradient(
@@ -21,117 +31,124 @@ body::before{
   background-size: 20px 20px;
 }
 
-.container{
-  margin:0 auto;
-  margin:100px 0 ;
+/* 1カラムの中心 */
+.container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
 }
 
-.container h1 {
+/* ロゴ */
+.logo {
   font-family: 'Montserrat', sans-serif;
-  display: none;
+  font-size: 36px;
   text-align: center;
   letter-spacing: 0.15em;
   color:#96720fbc;
   padding:40px 0;
+  margin-bottom: 40px;
 }
-.container p{
+
+
+/* 説明文 */
+.description {
   font-family: sans-serif;
-  display: none;
   text-align: center;
   color: #bca547f4;
+  font-size: 14px;
+  line-height: 1.9;
   letter-spacing: 0.03em;
-  padding: 30px;
+  margin-bottom: 60px;
 }
 
+/* はじめるボタン */
+.start-btn {
+  background-color: #c8b26a;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  padding: 14px 40px;
+  border-radius: 30px;
+}
+.start-btn:hover{
+  cursor: pointer;
+  opacity: 0.9;
+  background-color: #96720fbc;
+  transform: translateY(-1px);
+}
+
+/*fade用*/
+.fade {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 1s ease forwards;
+}
+.delay-1 {
+  animation-delay: 0.3s;
+}
+.delay-2 {
+  animation-delay: 0.9s;
+}
+.delay-3 {
+  animation-delay: 2.0s;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+/*mainpage*/
+/* メニューカード全体 */
 .menu-wrap {
   display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  width: 100%;
-  margin:20px 0 auto;
-}
-.memo-box{
-  width: calc(50% - 20px);
   flex-direction: column;
-  display:flex;
-  align-items: center;
-  border: 2px solid #bca547f4;
-  border-radius: 14px;
-  gap: 10px;
-}
-@media (max-width: 760px) {
-  .memo-box {
-    width: 100%;
-  }
+  gap: 24px;
+  margin-top: 40px;
 }
 
-.memo-box-title{
-  font-family: 'Montserrat', sans-serif;
-  color:#96720fbc;
+/* カード */
+.menu-card {
+  display: block;
+  background-color: #fff;
+  border: 2px solid #c8b26a;
+  border-radius: 16px;
+  padding: 24px 20px;
   text-align: center;
-  padding-top: 15px;
-}
-.memo-box-detail{
-  font-family: 'Montserrat', sans-serif;
-  color:#5a43039b;
-  text-align: center;
-  justify-content: center;
-  font-size: 13px;
-  padding-bottom: 15px;
-}
-
-textarea {
-  width: 90%;
-  padding: 10px;
-  box-sizing: border-box;
-  font-size: 16px;
-  margin: 20px 30px;
-  align-items: center;
-}
-
-button {
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 16px;
   cursor: pointer;
-  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-#memoList {
-  margin-top: 20px;
-}
-
-.memo-card {
-  background: white;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.memo-date {
-  font-size: 12px;
-  color: gray;
+/* タイトル */
+.menu-card h3 {
+  font-size: 18px;
+  letter-spacing: 0.1em;
   margin-bottom: 8px;
+  color: #6b5520;
 }
 
-.memo-text {
-  margin-bottom: 10px;
-  white-space: pre-wrap;
+/* 説明 */
+.menu-card p {
+  font-size: 12px;
+  color: #8a7440;
 }
 
-.memo-actions {
-  display: flex;
-  gap: 10px;
+/* hover演出 */
+.menu-card:hover{
+  background-color: #fdf8ea;
+  transform: translateY(-4px) scale(1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-.memo-actions button {
-  flex: 1;
-}
 
-/* スマホ対応 */
-@media (max-width: 480px) {
-  textarea {
-    height: 100px;
-  }
-}
+
