@@ -26,10 +26,14 @@
 
   <section class="memo-section">
     <h3>kyou - memo</h3>
-    <textarea placeholder="今日のことを書く…"></textarea>
+    <div class="memo-box">
+        <textarea id="memoInput" placeholder="今日のことを書く…"></textarea>
+        <button id="saveBtn" class="save-btn">✓</button>
+        <p id="savedAt" class="saved-at"></p>
+    </div>
   </section>
 
-  <!-- おすすめ -->
+  <!-- おすすめ欄-->
   <section class="recommend-section">
     <h3>あなたに勧めたい◯◯</h3>
 
@@ -50,4 +54,6 @@
 
 </main>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="script.js"></script>
 </body>
