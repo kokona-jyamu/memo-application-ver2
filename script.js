@@ -163,6 +163,15 @@ function renderRecommend() {
   recommendType.textContent = random.type;
   recommendItem.innerHTML = random.text;
 }
+function updateRecommendView(enabled) {
+  const section = document.querySelector(".recommend-section");
+
+  if (enabled) {
+    section.classList.remove("is-off");
+  } else {
+    section.classList.add("is-off");
+  }
+}
 //日超えたらランダム変更
 function watchDateChange() {
   setInterval(() => {
@@ -214,12 +223,13 @@ modalClose.addEventListener("click", () => {
 });
 //おすすめ
 recommendToggle.addEventListener("change", () => {
-  localStorage.setItem(
-    "recommendEnabled",
-    JSON.stringify(recommendToggle.checked)
-  );
-
-  renderRecommend();
+  const enabled = recommendToggle.checked;
+  // 状態を保存（1回だけ）
+  localStorage.setItem("recommendEnabled",JSON.stringify(enabled));
+  // 表示切り替え
+  updateRecommendView(enabled);
+  // ONのときだけおすすめを描画
+  if (enabled) {renderRecommend();}
 });
 recommendSection.addEventListener("click", () => {
   const enabled =
@@ -241,6 +251,7 @@ recommendSection.addEventListener("click", () => {
 renderLogs();
 renderRecommend();
 watchDateChange();
+updateRecommendView(recommendEnabled);
 
 
 
