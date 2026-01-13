@@ -16,15 +16,15 @@
 
 <main class="hibi-container">
   <section class="hibi-header">
-    <h1 class="fade delay-1">memomo</h1>
-    <h2 class="fade delay-1">hibi nikki</h2>
+    <h1 class="fade delay-2">memomo</h1>
+    <h2 class="fade delay-2">hibi nikki</h2>
     <p class="desc fade delay-3">
       何気ない毎日。ふと思ったことや今日頑張ったことを<br>
       あなたの1日をすっきりさせてみませんか。
     </p>
   </section>
 
-  <section class="memo-section">
+  <section class="memo-section fade delay-4">
     <h3>kyou - memo</h3>
     <div class="memo-box">
         <textarea id="memoInput" placeholder="今日のことを書く…"></textarea>
@@ -33,8 +33,14 @@
     </div>
   </section>
 
+  <section class="log-section fade delay-4">
+    <h2 class="log-title">これまでの記録</h2>
+    <ul id="logList" class="log-list"></ul>
+  </section>
+
+
   <!-- おすすめ欄-->
-  <section class="recommend-section">
+  <section class="recommend-section fade delay-5">
     <h3>あなたに勧めたい◯◯</h3>
 
     <div class="recommend-grid">
@@ -53,6 +59,18 @@
   </section>
 
 </main>
+
+<!-- 編集モーダル -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <textarea id="modalTextarea"></textarea>
+    <div class="modal-actions">
+      <button id="modalSave">保存</button>
+      <button id="modalClose">閉じる</button>
+    </div>
+  </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="script.js"></script>
