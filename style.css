@@ -384,10 +384,7 @@ body::before{
   display: block;
 }
 
-
-
-
-/* モーダル背景 */
+/* モーダルについて */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -396,18 +393,14 @@ body::before{
   justify-content: center;
   align-items: center;
   z-index: 1000;
-
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
-
-/* 表示状態 */
 .modal-overlay.show {
   opacity: 1;
   pointer-events: auto;
 }
-
 /* モーダル本体 */
 .modal {
   background: #fffdf6;
@@ -419,11 +412,9 @@ body::before{
   transform: scale(0.95);
   transition: transform 0.3s ease;
 }
-/* 表示時に拡大 */
 .modal-overlay.show .modal {
   transform: scale(1);
 }
-
 /* textarea */
 .modal textarea {
   width: 100%;
@@ -434,7 +425,6 @@ body::before{
   font-size: 14px;
   resize: none;
 }
-
 /* ボタン */
 .modal-actions {
   display: flex;
@@ -476,7 +466,19 @@ body::before{
 }
 
 
-
+/*todo.html*/
+.todo-container{
+  background:rgba(150, 114, 15, 0.5);
+  border-radius: 7px;
+  padding: 10px;
+  margin-top: 30px;
+}
+.todolist{
+  background-color: #eee;
+  border-radius: 10px;
+  padding:10px;
+  margin:15px 0;
+}
 
 
 

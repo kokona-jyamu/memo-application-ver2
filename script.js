@@ -245,8 +245,6 @@ recommendSection.addEventListener("click", () => {
 
 
 
-
-
 // === 初期表示 === //
 renderLogs();
 renderRecommend();
