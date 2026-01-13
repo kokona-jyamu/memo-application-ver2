@@ -307,6 +307,12 @@ body::before{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* 長押し中の見た目 */
+.log-item.pressing {
+  background: #f5edd7;
+  transform: scale(0.98);
+}
+
 
 
 /* あなたへのお勧め */
@@ -352,26 +358,66 @@ body::before{
   font-weight:normal;
   font-size: 12px;
 }
+.recommend-toggle {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: #fff;
+}
+#recommendToggle {
+  display: none;
+}
+/* おすすめOFF時 */
+.recommend-section {
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+.recommend-section.is-off {
+  opacity: 0.25;
+  filter: grayscale(1);
+}
+.recommend-section.is-off {
+  opacity: 0.3;
+  filter: grayscale(1);
+  pointer-events: none;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
 
 /* モーダル背景 */
 .modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
-  display: none;
+  display: flex;               
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  }
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* 表示状態 */
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 /* モーダル本体 */
 .modal {
   background: #fffdf6;
   width: 90%;
   max-width: 400px;
-  padding: 30px;
+  padding: 20px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+/* 表示時に拡大 */
+.modal-overlay.show .modal {
+  transform: scale(1);
 }
 
 /* textarea */
@@ -403,6 +449,26 @@ body::before{
 }
 #modalClose {
   background: #eee;
+}
+/*編集後の「更新」表示*/
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: #8a6f1c;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 2000;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 
