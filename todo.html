@@ -24,26 +24,26 @@
     </p>
   </section>
 
-  <section class="todo-container">
-    <div class="todolist">
-        <p>期限</p>
-        <p>関連</p>
-        <h4>TODO</h4>
+  <section class="todo-container fade delay-4">
+    <div class="todo-title">todo - memo</div>
+    <div class="todo-box">
+      <textarea class="todo-text" id="todoInput" placeholder="todo…"></textarea>
+      <button id="addTodoBtn" class="todo-add-btn">＋</button>
     </div>
-    <div class="todolist">
-        <p>期限</p>
-        <p>関連</p>
-        <h4>TODO</h4>
-    </div>
-    <div class="todolist">
-        <p>期限</p>
-        <p>関連</p>
-        <h4>TODO</h4>
-    </div>
+    <select id="tagSelect">
+      <option value="仕事">仕事</option>
+      <option value="家事">家事</option>
+      <option value="勉強">勉強</option>
+      <option value="その他">その他</option>
+    </select>
+    <button class="favorite-btn">
+      <i class="fa-regular fa-star"></i>
+    </button>
+    <ul id="todoList" class="todo-list"></ul>
   </section>
 
 </main>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="script.js"></script>
+<script src="todo.js"></script>
 </body>

@@ -19,7 +19,6 @@ const recommendSection = document.querySelector(".recommend-section");
 
 
 
-
 //===データ定義===//
 const recommends = [
   {
@@ -46,11 +45,11 @@ const recommends = [
 let memos = JSON.parse(localStorage.getItem("hibiMemos")) || [];
 let currentEditId = null;
 let lastDateKey = getTodayKey();
-
 const recommendEnabled =
   JSON.parse(localStorage.getItem("recommendEnabled")) ?? true;
-
 recommendToggle.checked = recommendEnabled;
+
+
 
 
 // === 関数定義　===//
@@ -183,6 +182,7 @@ function watchDateChange() {
     }
   }, 60000); // 1分ごと
 }
+
 
 
 

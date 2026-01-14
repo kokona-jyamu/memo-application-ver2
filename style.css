@@ -471,14 +471,96 @@ body::before{
   background:rgba(150, 114, 15, 0.5);
   border-radius: 7px;
   padding: 10px;
-  margin-top: 30px;
+  margin: 40px 20px;
 }
-.todolist{
-  background-color: #eee;
+.todo-title{
+  color:#fff;
+  text-align: center;
+  font-weight:bolder;
+  font-size: 20px;
+  letter-spacing: 0.15em;
+  padding: 15px;
+}
+.todo-box{
+  position: relative;
+  background-color: #fff;
   border-radius: 10px;
   padding:10px;
   margin:15px 0;
 }
+.todo-text{
+  width: 100%;
+  height:80px;
+  border-radius: 10px;
+  padding: 16px;
+  resize: none;
+  border: none;
+}
+/*add-button*/
+.todo-add-btn {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #9a7b1f;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+}
+.todo-add-btn:hover {
+  background: #fdf8ea;
+}
+/*todo-list*/
+.todo-list{
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #c8b26a;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.todo-text {
+  flex: 1;
+}
+.todo-text.done {
+  text-decoration: line-through;
+  color: #999;
+}
+.done-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+/*お気に入りマーク*/
+.star-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.star-btn .fa-solid {
+  color: gold;
+}
+.todo-tag {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #eee;
+  margin-left: 8px;
+}
+
 
 
 
