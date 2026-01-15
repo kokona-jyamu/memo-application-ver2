@@ -491,12 +491,24 @@ body::before{
 .todo-text{
   display: flex;
   width: 100%;
-  height:40px;
+  min-height: 40px;   
+  line-height: 1.5;
   border-radius: 10px;
-  padding: 16px;
+  padding: 15px;
+  flex: 1;
+  overflow: hidden;
   align-items: center;
   resize: none;
   border: none;
+  outline: none;
+}
+.todo-text.done {
+  text-decoration: line-through;
+  color: #999;
+}
+.todo-text:focus {
+  outline: none;
+  box-shadow: none;
 }
 /*select*/
 .todo-select{
@@ -504,9 +516,10 @@ body::before{
   color:#96720fbc;
   background-color:#fdf8ea ;
   border:none;
+  outline: none;
   border-radius: 10px;
-  padding: 3px;
-  margin-left: 3px;
+  padding: 2px;
+  margin-left: 2px;
 }
 /*add-button*/
 .todo-add-btn {
@@ -535,11 +548,13 @@ body::before{
 .todo-item {
   display: flex;
   align-items: center;
-  gap: 8px;
   background: #fff;
   border: 1px solid #c8b26a;
+  word-break: break-word;
+  gap: 8px;
+  font-size: 10px;
   border-radius: 12px;
-  padding: 12px;
+  padding: 10px;
   margin-bottom: 12px;
 }
 .todo-item.done-anim {
@@ -555,18 +570,12 @@ body::before{
     transform: translateX(20px);
   }
 }
-.todo-text {
-  flex: 1;
-}
-.todo-text.done {
-  text-decoration: line-through;
-  color: #999;
-}
 .done-btn {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 16px;
+  color:#96720fbc;
 }
 /*お気に入りマーク*/
 .star-btn {
@@ -574,6 +583,7 @@ body::before{
   border: none;
   cursor: pointer;
   font-size: 18px;
+  color: #96720fbc;
 }
 .star-btn .fa-solid {
   color: gold;
@@ -585,6 +595,33 @@ body::before{
   background: #eee;
   margin-left: 8px;
 }
+/*ゴミ箱*/
+.trash-wrapper{
+  height: 10vh;           
+  display: flex;
+  align-items: center;     
+  justify-content: center;
+}
+.trash-btn{
+  width: 120px;
+  height: 30px;
+  border-radius: 5%;
+  font-size: 10px;
+  align-items: center;
+  border: none;
+  background: #fff;
+  color: #9a7b1f;
+  cursor: pointer;
+  box-shadow: 0 4px 5px rgba(0,0,0,.15);
+}
+.hidden {
+  display: none;
+}
+.trash {
+  margin-top: 10px;
+  opacity: 0.85;
+}
+
 
 
 

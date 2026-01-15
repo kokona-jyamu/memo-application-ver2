@@ -27,7 +27,7 @@
   <section class="todo-container fade delay-4">
     <div class="todo-title">todo - memo</div>
     <div class="todo-box">
-      <textarea class="todo-text" id="todoInput" placeholder="todo…"></textarea>
+      <textarea class="todo-text log-text" id="todoInput" placeholder="todo…"></textarea>
       <button id="addTodoBtn" class="todo-add-btn">＋</button>
     </div>
     <select class="todo-select" id="tagSelect">
@@ -36,8 +36,16 @@
       <option value="勉強">勉強</option>
       <option value="その他">その他</option>
     </select>
-      <ul id="todoList" class="todo-list"></ul>
+
+    <ul id="todoList" class="todo-list"></ul>
+
   </section>
+
+  <div class="trash-wrapper">
+    <button id="trashToggle" class="trash-btn fade delay-5">🗑 ゴミ箱</button>
+    <ul id="trashList" class="todo-list trash hidden"></ul>
+  </div>
+  
 
 </main>
 

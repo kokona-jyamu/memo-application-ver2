@@ -4,12 +4,18 @@ const todoInput = document.getElementById("todoInput");
 const addTodoBtn = document.getElementById("addTodoBtn");
 const todoList = document.getElementById("todoList");
 const tagSelect = document.getElementById("tagSelect");
+const trashToggle = document.getElementById("trashToggle");
+const trashList = document.getElementById("trashList");
+
 
 
 //===データ定義===//
+const TRASH_LIMIT = 1000 * 60 * 60 * 24 * 30;
 
 //===状況管理===//
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
+let isTrashMode = false;
+
 
 
 
@@ -18,80 +24,70 @@ let todos = JSON.parse(localStorage.getItem("todos")) || [];
 //todoの一覧描画
 function renderTodos() {
   todoList.innerHTML = "";
-  todos
-  .filter(todo => !todo.trashed)
-  .forEach(todo => {
+
+  todos.filter(t => !t.trashed).forEach(todo => {
     const li = document.createElement("li");
     li.className = "todo-item";
-    if(todo.done)li.classList.add("done-anim")
 
     li.innerHTML = `
       <button class="star-btn">
         <i class="${todo.favorite ? "fa-solid" : "fa-regular"} fa-star"></i>
       </button>
+
       <span class="todo-tag">${todo.tag}</span>
+
       <span class="todo-text ${todo.done ? "done" : ""}">
-         ${todo.text}
+        ${todo.text}
       </span>
-      <button class="done-btn">
-        ✓
-      </button>
+
+      <button class="done-btn">✓</button>
     `;
-// ===== スワイプ完了（スマホUX）=====
-    let startX = 0;
-    let currentX = 0;
-    let isSwiping = false;
-    const SWIPE_THRESHOLD = 80;
 
-    li.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-    isSwiping = true;
-    li.classList.add("swiping");
-    });
-    li.addEventListener("touchmove", e => {
-    if (!isSwiping) return;
-
-    currentX = e.touches[0].clientX;
-    const diffX = currentX - startX;
-
-    if (diffX > 0) {
-        li.style.transform = `translateX(${diffX}px)`;
-
-        if (diffX > SWIPE_THRESHOLD) {
-        li.classList.add("swipe-ready");
-        } else {
-        li.classList.remove("swipe-ready");
-        }
-    }
-    });
-    li.addEventListener("touchend", () => {
-    li.classList.remove("swiping");
-
-    const diffX = currentX - startX;
-
-    if (diffX > SWIPE_THRESHOLD) {
-        handleDone(todo, li);
-    } else {
-        li.style.transform = "translateX(0)";
-        li.classList.remove("swipe-ready");
-    }
-
-    isSwiping = false;
-    startX = 0;
-    currentX = 0;
-    });
-// ★ お気に入り切り替え
+    // ⭐
     li.querySelector(".star-btn").addEventListener("click", () => {
       todo.favorite = !todo.favorite;
       saveTodos();
       renderTodos();
     });
+
+    // ✓
     li.querySelector(".done-btn").addEventListener("click", () => {
-        handleDone(todo, li);
+      handleDone(todo, li);
     });
+
+    setupSwipe(li, todo);
+
     todoList.appendChild(li);
   });
 }
+function renderTodoItem(li, todo) {
+  li.innerHTML = `
+    <span>${todo.text}</span>
+    <button class="done-btn">✓</button>
+  `;
+
+  setupSwipe(li, todo);
+
+  li.querySelector(".done-btn").addEventListener("click", () => {
+    handleDone(todo, li);
+  });
+}
+function renderTrashItem(li, todo) {
+  li.innerHTML = `
+    <span class="todo-text done">${todo.text}</span>
+    <button class="restore-btn">↩</button>
+  `;
+
+  li.querySelector(".restore-btn").addEventListener("click", () => {
+    todo.trashed = false;
+    todo.done = false;
+    saveTodos();
+    renderTodos();
+  });
+}
+
+
+
 //todosave
 function saveTodos() {
   localStorage.setItem("todos", JSON.stringify(todos));
@@ -99,16 +95,79 @@ function saveTodos() {
 //完了時のアニメーション
 function handleDone(todo, li) {
   todo.done = true;
-  saveTodos();
   li.classList.add("done-anim");
   // ゴミ箱へ
   setTimeout(() => {
-    todo.trashed = true;
-    saveTodos();
-    renderTodos();
+  moveToTrash(todo);
   }, 600); 
 }
+function moveToTrash(todo) {
+  todo.trashed = true;
+  todo.trashedAt = Date.now(); // ゴミ箱に入れた日時
+  saveTodos();
+  renderTodos();
+}
+function cleanupTrash() {
+  const now = Date.now();
 
+  todos = todos.filter(todo => {
+    if (!todo.trashed) return true;
+    return now - todo.trashedAt < TRASH_LIMIT;
+  });
+
+  saveTodos();
+}
+function renderTrash() {
+  trashList.innerHTML = "";
+
+  todos.filter(t => t.trashed).forEach(todo => {
+    const li = document.createElement("li");
+    li.className = "trash-item";
+
+    li.innerHTML = `
+      <span class="todo-text done">${todo.text}</span>
+      <button class="restore-btn">↩</button>
+    `;
+
+    li.querySelector(".restore-btn").addEventListener("click", () => {
+      todo.trashed = false;
+      todo.done = false;
+      todo.trashedAt = null;
+      saveTodos();
+      renderTodos();
+      renderTrash();
+    });
+
+    trashList.appendChild(li);
+  });
+}
+function setupSwipe(li, todo) {
+  let startX = 0;
+  let currentX = 0;
+  let isSwiping = false;
+  const SWIPE_THRESHOLD = 80;
+
+  li.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+    isSwiping = true;
+  });
+
+  li.addEventListener("touchmove", e => {
+    if (!isSwiping) return;
+    currentX = e.touches[0].clientX;
+    const diff = currentX - startX;
+    if (diff > 0) li.style.transform = `translateX(${diff}px)`;
+  });
+
+  li.addEventListener("touchend", () => {
+    if (currentX - startX > SWIPE_THRESHOLD) {
+      handleDone(todo, li);
+    } else {
+      li.style.transform = "translateX(0)";
+    }
+    isSwiping = false;
+  });
+}
 
 
 
@@ -134,8 +193,14 @@ addTodoBtn.addEventListener("click", () => {
   todoInput.value = "";
   renderTodos();
 });
+trashToggle.addEventListener("click", () => {
+  trashList.classList.toggle("hidden");
+  renderTrash();
+});
+
 
 
 
 //===初期表示===//
 renderTodos();
+cleanupTrash();
