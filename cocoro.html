@@ -13,11 +13,28 @@
 </head>
 
 <body>
-    <header class="app-header">
-    <a href="mainpage.html" class="back-btn">
-    ←
-    </a>
-    <h1 class="page-title">cocoro kiroku</h1>
-</header>
 
+  <main class="hibi-container">
+    <section class="hibi-header">
+      <a class="title fade delay-1" href="mainpage.html">memomo</a>
+      <h2 class="fade delay-1">cocoro nikki</h2>
+      <p class="desc fade delay-3">
+        今日思ったこと、モヤっとしたこと<br>
+        一日の終わりに書き留めてみませんか。
+      </p>
+    </section>
+
+    <section class="todo-container fade delay-4">
+      <div class="todo-title">cocoron</div>
+      <div class="todo-box">
+        <textarea class="todo-text log-text" id="todoInput" placeholder="watashi no cocoro"></textarea>
+        <button id="addTodoBtn" class="todo-add-btn">＋</button>
+      </div>
+      <ul id="todoList" class="todo-list"></ul>
+    </section>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="todo.js"></script>
 </body>
