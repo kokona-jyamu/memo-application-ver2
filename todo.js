@@ -42,7 +42,6 @@ function renderTodos() {
 
       <button class="done-btn">✓</button>
     `;
-
     // ⭐
     li.querySelector(".star-btn").addEventListener("click", () => {
       todo.favorite = !todo.favorite;
@@ -60,34 +59,6 @@ function renderTodos() {
     todoList.appendChild(li);
   });
 }
-function renderTodoItem(li, todo) {
-  li.innerHTML = `
-    <span>${todo.text}</span>
-    <button class="done-btn">✓</button>
-  `;
-
-  setupSwipe(li, todo);
-
-  li.querySelector(".done-btn").addEventListener("click", () => {
-    handleDone(todo, li);
-  });
-}
-function renderTrashItem(li, todo) {
-  li.innerHTML = `
-    <span class="todo-text done">${todo.text}</span>
-    <button class="restore-btn">↩</button>
-  `;
-
-  li.querySelector(".restore-btn").addEventListener("click", () => {
-    todo.trashed = false;
-    todo.done = false;
-    saveTodos();
-    renderTodos();
-  });
-}
-
-
-
 //todosave
 function saveTodos() {
   localStorage.setItem("todos", JSON.stringify(todos));
@@ -122,11 +93,15 @@ function renderTrash() {
 
   todos.filter(t => t.trashed).forEach(todo => {
     const li = document.createElement("li");
-    li.className = "trash-item";
+    li.className = "todo-item trash-item";
 
     li.innerHTML = `
-      <span class="todo-text done">${todo.text}</span>
-      <button class="restore-btn">↩</button>
+    <span class="todo-text done">
+        ${todo.text}
+    </span>
+    <button class="restore-btn" title="復元">
+        <i class="fa-solid fa-rotate-left"></i>
+    </button>
     `;
 
     li.querySelector(".restore-btn").addEventListener("click", () => {
@@ -194,13 +169,15 @@ addTodoBtn.addEventListener("click", () => {
   renderTodos();
 });
 trashToggle.addEventListener("click", () => {
-  trashList.classList.toggle("hidden");
-  renderTrash();
+  let isTrashOpen = false;
+  isTrashOpen = !isTrashOpen;
+  trashList.classList.toggle("hidden", !isTrashOpen);
+  if (isTrashOpen) renderTrash();
 });
 
 
 
 
 //===初期表示===//
-renderTodos();
 cleanupTrash();
+renderTodos();
