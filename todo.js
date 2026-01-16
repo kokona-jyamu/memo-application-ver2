@@ -15,9 +15,7 @@ const TRASH_LIMIT = 1000 * 60 * 60 * 24 * 30;
 //===状況管理===//
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 let isTrashMode = false;
-
-
-
+let isTrashOpen = false;
 
 
 //===関数定義===//
@@ -145,9 +143,6 @@ function setupSwipe(li, todo) {
 }
 
 
-
-
-
 //===イベント===//
 //todo-add
 addTodoBtn.addEventListener("click", () => {
@@ -169,7 +164,6 @@ addTodoBtn.addEventListener("click", () => {
   renderTodos();
 });
 trashToggle.addEventListener("click", () => {
-  let isTrashOpen = false;
   isTrashOpen = !isTrashOpen;
   trashList.classList.toggle("hidden", !isTrashOpen);
   if (isTrashOpen) renderTrash();
