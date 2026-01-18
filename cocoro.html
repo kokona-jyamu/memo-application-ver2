@@ -24,17 +24,60 @@
       </p>
     </section>
 
+
     <section class="todo-container fade delay-4">
-      <div class="todo-title">cocoron</div>
+
+      <div class="todo-header">
+        <div class="todo-title">cocoron</div>
+        <div class="todo-date" id="todoDate"></div>
+      </div>
+
       <div class="todo-box">
-        <textarea class="todo-text log-text" id="todoInput" placeholder="watashi no cocoro"></textarea>
+        <textarea class="todo-text" 
+                  id="todoInput" 
+                  placeholder="watashi no cocoro">
+        </textarea>
         <button id="addTodoBtn" class="todo-add-btn">＋</button>
       </div>
+
       <ul id="todoList" class="todo-list"></ul>
+
+      <div class="mood-tabs">
+        <button data-mood="sun">🌞</button>
+        <button data-mood="cloud">🌫️</button>
+        <button data-mood="spiral">🌀</button>
+      </div>
+
+
+      <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+          <textarea id="editTextarea"></textarea>
+          <button id="saveEditBtn">保存</button>
+        </div>
+      </div>
+      <div id="saveToast" class="toast hidden">保存しました</div>
+
     </section>
+
+    <section class="calendar-section fade delay-5">
+      <div class="calendar-header">
+        <button id="prevMonth">‹</button>
+        <span id="calendarTitle"></span>
+        <button id="nextMonth">›</button>
+      </div>
+
+      <div class="calendar-grid" id="calendarGrid"></div>
+      <select id="tagSelect">
+        <option value="🌀">🌀</option>
+        <option value="🌞">🌞</option>
+        <option value="🌫️">🌫️</option>
+      </select>
+
+    </section>
+
 
   </main>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="todo.js"></script>
+  <script src="cocoro.js"></script>
 </body>
