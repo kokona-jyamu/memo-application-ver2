@@ -2,6 +2,12 @@ const todoDate = document.getElementById("todoDate");
 const todoInput = document.getElementById("todoInput");
 const addTodoBtn = document.getElementById("addTodoBtn");
 const todoList = document.getElementById("todoList");
+
+const editModal = document.getElementById("editModal");
+const editTextarea = document.getElementById("editTextarea");
+const saveEditBtn = document.getElementById("saveEditBtn");
+const saveToast = document.getElementById("saveToast");
+
 const calendarGrid = document.getElementById("calendarGrid");
 const calendarTitle = document.getElementById("calendarTitle");
 const tagSelect = document.getElementById("tagSelect");
@@ -11,7 +17,7 @@ const tagSelect = document.getElementById("tagSelect");
 let selectedDateKey = getTodayKey();
 let currentMonth = new Date();
 let cocoroData = JSON.parse(localStorage.getItem("cocoroData")) || {};
-
+let editingLog = null;
 
 //===描写関数===//
 //今日を取得する関数（共通）
@@ -29,14 +35,14 @@ function renderTodoDate() {
 function selectDate(dateKey) {
   selectedDateKey = dateKey;
   renderTodoDate();
-  renderLogs(selectedDateKey);
+  renderLogs();
   updateMoodUI();
 }
 // === ログ表示（最大3） ===
-function renderLogs(dateKey) {
+function renderLogs() {
   todoList.innerHTML = "";
 
-  const logs = cocoroData[dateKey]?.logs || [];
+  const logs = cocoroData[selectedDateKey]?.logs || [];
 
   logs.forEach(log => {
     const li = document.createElement("li");
@@ -47,23 +53,38 @@ function renderLogs(dateKey) {
     span.textContent = log.text;
 
     span.addEventListener("click", () => {
-      alert("次はモーダル編集にします 🌸");
+      openEditModal(log);
     });
 
     li.appendChild(span);
     todoList.appendChild(li);
-
-      li.replaceChild(textarea, span);
-      textarea.focus();
-    });
+  });
 }
 function updateMoodUI() {
   const mood = cocoroData[selectedDateKey]?.mood;
 
   document.querySelectorAll(".mood-tabs button").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.mood === mood);
+    const isActive = btn.dataset.mood === mood;
+    btn.classList.toggle("active", isActive);
   });
 }
+//モーダルを開く際の関数
+function openEditModal(log) {
+  editingLog = log;
+  editTextarea.value = log.text;
+  editModal.classList.remove("hidden");
+  editTextarea.focus();
+}
+function showSaveToast() {
+  saveToast.classList.remove("hidden");
+  saveToast.classList.add("show");
+
+  setTimeout(() => {
+    saveToast.classList.remove("show");
+    saveToast.classList.add("hidden");
+  }, 1500);
+}
+
 //カレンダー
 function renderCalendar() {
   calendarGrid.innerHTML = "";
@@ -137,8 +158,31 @@ addTodoBtn.addEventListener("click", () => {
 
   localStorage.setItem("cocoroData", JSON.stringify(cocoroData));
   todoInput.value = "";
-  renderLogs(selectedDateKey);
+  renderLogs();
 });
+//編集後保存ボタン
+saveEditBtn.addEventListener("click", () => {
+  if (!editingLog) return;
+
+  editingLog.text = editTextarea.value.trim();
+  localStorage.setItem("cocoroData", JSON.stringify(cocoroData));
+
+  editModal.classList.add("hidden");
+  showSaveToast();
+  renderLogs();
+
+  editingLog = null;
+});
+//グレー部分タップで編集画面閉じる（UX）
+editModal.addEventListener("click", (e) => {
+  if (e.target === editModal) {
+    editModal.classList.add("hidden");
+    editingLog = null;
+  }
+});
+
+
+
 
 
   
@@ -173,5 +217,6 @@ document.getElementById("nextMonth").addEventListener("click", () => {
 
 //===初期表示===//
 renderCalendar();
+renderLogs();
 selectDate(getTodayKey());
 
