@@ -6,11 +6,10 @@ const todoList = document.getElementById("todoList");
 const tagSelect = document.getElementById("tagSelect");
 const trashToggle = document.getElementById("trashToggle");
 const trashList = document.getElementById("trashList");
-
-
-
-//===データ定義===//
+//---データ定義---//
 const TRASH_LIMIT = 1000 * 60 * 60 * 24 * 30;
+
+
 
 //===状況管理===//
 let todos = JSON.parse(localStorage.getItem("todos")) || [];

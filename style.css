@@ -466,6 +466,7 @@ body::before{
 }
 
 
+
 /*todo.html*/
 .todo-container{
   background:rgba(150, 114, 15, 0.5);
@@ -659,6 +660,7 @@ body::before{
 }
 
 
+
 /*cocoro-html*/
 .todo-date{
   font-size: 13px;
@@ -709,25 +711,6 @@ body::before{
 }
 .save-btn:active {
   transform: scale(0.95);
-}
-/* 保存トースト */
-.toast {
-  position: fixed;
-  bottom: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background:#4a3b14;
-  color: #fff;
-  padding: 8px 14px;
-  border-radius: 20px;
-  opacity: 0.7;
-  transition: opacity .3s;
-}
-.toast.show {
-  opacity: 0.8;
-}
-.hidden {
-  display: none;
 }
 /*mood*/
 .mood-tabs {
@@ -786,51 +769,6 @@ body::before{
 
 
 
-
-
-
-
-
-
-
-
-
-/* ヘッダー */
-.app-header {
-  position: sticky;
-  top: 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  margin-top: 20px;
-  border-radius: 10px;
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
-  z-index: 100;
-}
-/* 戻るボタン */
-.back-btn {
-  text-decoration: none;
-  font-size: 20px;
-  color: #96720fbc;
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-.back-btn:hover {
-  background-color: #fdf8ea;
-}
-.back-btn:active {
-  background-color: #f3e7c6;
-}
-/* ページタイトル */
-.page-title {
-  font-size: 18px;
-  letter-spacing: 0.1em;
-  color: #96720fbc;
-}
 
 
 
