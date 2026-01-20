@@ -38,7 +38,6 @@ body::before{
   padding: 80px 20px;
   text-align: center;
 }
-
 /* ロゴ */
 .logo {
   font-family: 'Montserrat', sans-serif;
@@ -49,8 +48,6 @@ body::before{
   padding:40px 0;
   margin-bottom: 40px;
 }
-
-
 /* 説明文 */
 .description {
   font-family: sans-serif;
@@ -61,7 +58,6 @@ body::before{
   letter-spacing: 0.03em;
   margin-bottom: 60px;
 }
-
 /* はじめるボタン */
 .start-btn {
   background-color: #c8b26a;
@@ -220,18 +216,17 @@ body::before{
 }
 .save-btn {
   position: absolute;
-  right: 16px;
-  bottom: 16px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  right: 10px;
+  bottom: 15px;
+  border-radius: 20%;
+  padding:5px;
   border: none;
   background: #fff;
   color: #9a7b1f;
-  font-size: 18px;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,.15);
   transition: all 0.2s ease;
+  text-align: center;
 }
 .save-btn:hover {
   background: #fdf8ea;
@@ -306,7 +301,6 @@ body::before{
   background: #f5edd7;
   transform: scale(0.98);
 }
-
 /* あなたへのお勧め */
 .recommend-section {
   background:rgba(150, 114, 15, 0.5);
@@ -667,50 +661,15 @@ body::before{
   color: #eee;
   text-align: center;
 }
-/*modal*/
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.4);
+.cocoron-log-item {
+  font-size: 10px;
+  margin-bottom: 12px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-.modal-content {
   background: #fff;
-  padding: 20px;
-  border-radius: 16px;
-  width: 80%;
-  max-width: 360px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-.modal textarea {
-  width: 100%;
-  height: 120px;
-  border: none;
-  outline: none;
-  resize: none;
-  font-size: 14px;
-}
-.save-btn {
-  display: block;
-  margin: 12px auto 0;
-  padding: 15px 35px;
-  border-radius: 20px;
-  border: none;
-  background:#f3e7c6;
-  color: #333;
-  font-size: 12px;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-.save-btn:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-.save-btn:active {
-  transform: scale(0.95);
+  border: 1px solid #c8b26a;
+  border-radius: 12px;
+  padding: 12px;
+  position: relative; 
 }
 /*mood*/
 .mood-tabs {
@@ -744,7 +703,13 @@ body::before{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+}
+.calendar-header button{
+  border: none;
+  color: rgba(150, 114, 15, 0.5);
+  font-weight: bold;
+  cursor: pointer;
 }
 .calendar-grid {
   display: grid;

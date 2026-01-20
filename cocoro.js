@@ -40,16 +40,31 @@ function renderTodoDate(){
     const text = `${d.getFullYear()}年 ${d.getMonth()+1}月 ${d.getDate()}日`;
     todoDate.textContent = text;
 }
-function renderLogs(){
-    todoList.innerHTML = "";
-    const logs = cocoroData[selectedDateKey]?.logs||[];
+function renderLogs() {
+  todoList.innerHTML = "";
 
-    logs.forEach(text => {
-        const li = document.createElement("li");
-        li.textContent = text;
-        todoList.appendChild(li);
-    });
+  const logs = cocoroData[selectedDateKey]?.logs || [];
+
+  logs.forEach(log => {
+    const li = document.createElement("li");
+    li.classList.add("cocoron-log-item");
+
+    const text =
+      typeof log === "string"
+        ? log
+        : log.text ?? "";
+
+    li.innerHTML = `
+      <div class="cocoron-log-bubble">
+        ${text}
+      </div>
+    `;
+
+    todoList.appendChild(li);
+  });
 }
+
+
 //calendar
 function renderCalendar(){
     calendarGrid.innerHTML = "";
@@ -135,7 +150,7 @@ addTodoBtn.addEventListener("click",()=>{
     cocoroData[selectedDateKey]={logs: [],mood: null};
     }
 
-    if(cocoroData[selectedDateKey].length >= 3){
+    if(cocoroData[selectedDateKey].logs.length >= 3){
         alert("今日はここまで🌷");
         return;
     }
